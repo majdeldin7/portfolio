@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    reloader.stakater.com/auto: "true"
+  labels:
+    app: website
+  name: website
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: website
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 7
+      containers:
+        - image: abdulrahmanistin/yp-website:3191501
+          imagePullPolicy: IfNotPresent
+          name: yp-website-dev
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          resources: {}
+          securityContext:
+            privileged: false
+            readOnlyRootFilesystem: false
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            runAsGroup: 1001
+            runAsNonRoot: true
+            runAsUser: 1001
+      imagePullSecrets:
+        - name: regcred
+
