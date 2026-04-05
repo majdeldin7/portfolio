@@ -5,8 +5,8 @@ metadata:
     reloader.stakater.com/auto: "true"
   labels:
     app: website
-  name: website
-  namespace: dev
+  name: majd-website
+  namespace: majd
 spec:
   replicas: 1
   selector:
@@ -20,9 +20,9 @@ spec:
       automountServiceAccountToken: false
       terminationGracePeriodSeconds: 7
       containers:
-        - image: abdulrahmanistin/yp-website:3191501
+        - image: registry.fg-tech.net/majd-website:3191501
           imagePullPolicy: IfNotPresent
-          name: yp-website-dev
+          name: majd-website
           ports:
             - containerPort: 3000
               protocol: TCP
