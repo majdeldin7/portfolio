@@ -38,5 +38,5 @@ spec:
             runAsNonRoot: true
             runAsUser: 1001
       imagePullSecrets:
-        - name: regcred
+        - name: zot-regcred
 
