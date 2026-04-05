@@ -1,0 +1,50 @@
+---
+title: "Kubernetes Storage Migration: NFS to Longhorn"
+publishedAt: "2026-02-10"
+summary: "Migrated Kubernetes persistent storage from a centralized NFS setup to Longhorn, implementing highly available, distributed block storage for stateful workloads."
+images:
+  - "/images/projects/longhorn.png"
+team:
+  - name: "Majdeldin Salah"
+    role: "Cloud & DevOps Engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/majdeldin"
+  - name: "Abdulrahman Fagiry"
+    role: "Senior Cloud & DevOps Engineer | Infrastructure Operations Lead"
+    avatar: "/images/fg-avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/abdulrahmanfagiry"
+---
+
+## Overview
+
+In this project, our team overhauled the storage architecture for our stateful Kubernetes workloads. We migrated away from a legacy, centralized NFS-client provisioner to **Longhorn**, a cloud-native, distributed block storage system. This transition dramatically improved our cluster's resilience, I/O performance, and disaster recovery capabilities.
+
+## Architecture & Tech Stack
+
+- **Container Orchestration:** Kubernetes
+- **Distributed Storage:** Longhorn
+- **Legacy Storage:** NFS (Network File System)
+- **Deployment:** Helm
+- **Infrastructure:** Bare Metal / ESXi
+
+## The Challenge
+
+Initially, our Kubernetes Persistent Volume Claims (PVCs) were backed by an NFS server. While easy to set up, this architecture presented severe limitations for production environments:
+1. **Single Point of Failure (SPOF):** If the NFS server went down, all stateful applications (databases, caches, file uploads) in the cluster would immediately crash or hang.
+2. **Performance Bottlenecks:** Network latency and file-level locking overhead inherent to NFS caused poor I/O performance for write-heavy database workloads.
+3. **Lack of Native Data Protection:** Managing automated snapshots, backups, and restoring volumes seamlessly within Kubernetes was overly complex.
+
+## The Solution
+
+To build a truly resilient storage tier, we engineered a migration to Longhorn:
+
+1. **Longhorn Deployment:** We deployed Longhorn across our Kubernetes worker nodes using Helm, instantly transforming the local VM storage provisioned via ESXi into a unified, distributed block storage pool.
+2. **High Availability & Replication:** We configured custom StorageClasses to ensure every Persistent Volume (PV) maintains multiple synchronous replicas across different physical nodes. If a worker node fails, the data remains instantly accessible.
+3. **Data Migration:** We executed a carefully planned migration strategy, scaling down stateful applications temporarily, copying data from the legacy NFS volumes to the new Longhorn PVCs using `rsync` and Kubernetes jobs, and bringing the pods back online.
+4. **Automated Disaster Recovery:** We configured Longhorn's built-in backup mechanism to automatically take recurring snapshots of critical volumes and push them to an off-site S3 bucket for disaster recovery.
+
+## Results & Impact
+
+- **Eliminated Single Point of Failure:** Storage is now fully distributed. We can safely lose a worker node without any data loss or application downtime.
+- **Massive Performance Gains:** By shifting from file-level (NFS) to block-level storage, database read/write speeds increased significantly.
+- **Simplified Operations:** The Longhorn UI and its native integration with Kubernetes made provisioning, backing up, and restoring volumes a frictionless, API-driven process.

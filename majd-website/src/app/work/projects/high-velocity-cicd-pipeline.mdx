@@ -1,0 +1,44 @@
+---
+title: "High-Velocity CI/CD Pipeline with GitOps"
+publishedAt: "2025-02-18"
+summary: "Engineered an automated deployment pipeline integrating security gates and ArgoCD GitOps, enabling a 6-person team to ship 70+ weekly releases without weekend overtime."
+images:
+  - "/images/projects/cicd.png"
+team:
+  - name: "Majdeldin Salah"
+    role: "Cloud & DevOps Engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/majdeldin"
+---
+
+## Overview
+
+In this project, I architected and implemented an end-to-end continuous integration and continuous deployment (CI/CD) pipeline to solve critical delivery bottlenecks for a 6-person engineering team. By strictly automating testing, security scanning, image distribution, and GitOps-based deployments, we transformed the development lifecycle to support rapid, reliable daily releases.
+
+## Architecture & Tech Stack
+
+- **CI/CD Engine:** Jenkins
+- **Continuous Delivery:** ArgoCD (GitOps)
+- **Container Orchestration:** Kubernetes
+- **Code Quality:** SonarQube
+- **Security Scanning:** Trivy
+- **Container Registries:** DockerHub (Primary) & Zot (Private Backup)
+
+## The Challenge
+
+Our engineering team was struggling with manual, error-prone deployment processes. Code quality checks and security scans were largely reactive, and updating cluster manifests manually led to configuration drift. This created bottlenecks, delayed releases, and forced weekend work to push updates to production. We needed a system capable of handling high deployment frequency (70+ releases/week) while strictly enforcing quality, security, and infrastructure-as-code standards.
+
+## The Solution
+
+I designed a fully automated pipeline that triggers on every commit and pull request, removing all manual intervention from the build and deployment process:
+
+1. **Automated Quality Gates:** Integrated **SonarQube** directly into the Jenkins pipeline to automatically scan pull requests for bugs, code smells, and technical debt. Builds automatically fail if they do not meet our strict code quality thresholds.
+2. **Shift-Left Security:** Implemented **Trivy** to scan Docker images for OS and application-level vulnerabilities during the CI phase, ensuring no compromised packages make it to production.
+3. **Resilient Artifact Management:** Configured the pipeline to push validated container images to **DockerHub** as the primary public registry, while simultaneously mirroring to **Zot**, a secure, private backup registry, guaranteeing artifact availability.
+4. **GitOps Continuous Delivery:** As the final pipeline step, Jenkins automatically commits the new image tags directly to our central Kubernetes manifest repository. **ArgoCD**, running inside the cluster, instantly detects this commit and automatically syncs the live Kubernetes environment to the new desired state.
+
+## Results & Impact
+
+- **Massive Productivity Boost:** The automated Jenkins-to-ArgoCD pipeline empowered our 6-person team to comfortably ship 70+ releases per week.
+- **Zero-Touch Deployments:** By completely eliminating manual `kubectl` commands and deployment-related outages, we achieved zero weekend work for the engineering team.
+- **Enhanced Security & Reliability:** Vulnerabilities are caught before merging, our dual-registry setup ensures high availability, and ArgoCD provides instant rollback capabilities in case of a bad release.

@@ -1,0 +1,46 @@
+---
+title: "HA PostgreSQL Cluster with Pgpool-II"
+publishedAt: "2024-07-10"
+summary: "Architected a high-availability PostgreSQL solution using AWS RDS and Pgpool-II for load balancing and automatic failover handling."
+images:
+  - "/images/projects/rds.png"
+team:
+  - name: "Majdeldin Salah"
+    role: "Cloud & DevOps Engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/majdeldin"
+  - name: "Abdulrahman Fagiry"
+    role: "Senior Cloud & DevOps Engineer | Infrastructure Operations Lead"
+    avatar: "/images/fg-avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/abdulrahmanfagiry"
+---
+
+## Overview
+
+In this project, we designed and implemented a highly available, robust PostgreSQL database architecture to support mission-critical applications. By integrating **Pgpool-II** alongside **AWS RDS**, we established a resilient data tier capable of automatic failover, efficient read/write load balancing, and deep observability.
+
+## Architecture & Tech Stack
+
+- **Database:** PostgreSQL
+- **Middleware / Load Balancer:** Pgpool-II
+- **Infrastructure:** AWS RDS
+- **Container Orchestration:** Kubernetes (Amazon EKS)
+- **Monitoring:** AWS CloudWatch
+
+## The Challenge
+
+Our applications were facing scaling limits due to a monolithic database setup, creating a severe single point of failure (SPOF). Read-heavy operations were bottlenecking write performance, and we needed deep, native insights into database metrics to proactively manage load without accepting application downtime.
+
+## The Solution
+
+Working collaboratively, we engineered a robust database topology enhanced by connection pooling and intelligent routing:
+
+1. **Managed Replication:** Leveraged AWS RDS for robust, managed replication between a Primary PostgreSQL instance and multiple Read Replicas to ensure seamless data redundancy.
+2. **Read/Write Splitting with Pgpool-II:** We deployed Pgpool-II as a **Kubernetes StatefulSet (STS)** pod to act as a smart proxy. It intelligently routes `SELECT` (read) queries to the RDS read replicas, while directing all `INSERT/UPDATE/DELETE` (write) queries to the primary RDS instance. This drastically improved overall query throughput and maintained session consistency.
+3. **Observability & Alarms:** Integrated AWS CloudWatch for granular, real-time monitoring of RDS database connections, CPU utilization, and query latency. We set up automated CloudWatch alarms to notify the team instantly of any anomalies or failover events.
+
+## Results & Impact
+
+- **Eliminated Single Point of Failure:** Database high-availability was successfully achieved using AWS RDS Multi-AZ and replication features, protecting critical business data.
+- **Enhanced Application Performance:** Read queries are now distributed across multiple replicas via Pgpool-II, reducing load on the primary node and decreasing latency for end-users.
+- **Proactive Issue Resolution:** With AWS CloudWatch metrics and alarms in place, the team can now identify and resolve database bottlenecks before they impact our strict 99.99% uptime Service Level Agreements (SLAs).

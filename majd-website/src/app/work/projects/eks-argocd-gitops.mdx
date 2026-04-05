@@ -1,0 +1,44 @@
+---
+title: "EKS + ArgoCD GitOps Platform"
+publishedAt: "2025-12-23"
+summary: "Designed a production-grade Kubernetes platform on AWS EKS using Terraform. Implemented ArgoCD for GitOps-based continuous delivery, enabling zero-downtime deployments."
+images:
+  - "/images/projects/eks.png"
+team:
+  - name: "Majdeldin Salah"
+    role: "Cloud & DevOps Engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/majdeldin"
+  - name: "Abdulrahman Fagiry"
+    role: "Senior Cloud & DevOps Engineer | Infrastructure Operations Lead"
+    avatar: "/images/fg-avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/abdulrahmanfagiry"
+---
+
+## Overview
+
+In this project, We architected and deployed a highly available, production-grade Kubernetes environment using Amazon Elastic Kubernetes Service (EKS). To streamline the deployment process and enforce infrastructure-as-code principles, We integrated ArgoCD to establish a robust GitOps workflow.
+
+## Architecture & Tech Stack
+
+- **Cloud Provider:** AWS
+- **Infrastructure as Code:** Terraform
+- **Container Orchestration:** Amazon EKS
+- **Continuous Delivery:** ArgoCD (GitOps)
+- **Version Control:** GitHub / Git
+
+## The Challenge
+
+The engineering team was facing inconsistencies between environments and manual deployment bottlenecks. We needed a reliable, automated way to deploy microservices that ensured the production state always exactly matched the code repository, while also achieving zero-downtime during application updates.
+
+## The Solution
+
+1. **Automated Infrastructure:** I utilized Terraform to provision the entire underlying infrastructure, including the VPC, subnets, IAM roles, security groups, and the EKS cluster itself, ensuring completely reproducible environments.
+2. **GitOps Implementation:** I installed and configured ArgoCD within the EKS cluster. ArgoCD is set up to continuously monitor our Kubernetes manifest repositories and automatically sync any approved changes directly to the cluster.
+3. **Zero-Downtime Deployments:** By leveraging Kubernetes rolling update strategies combined with ArgoCD's automated sync mechanisms, I ensured that applications are updated seamlessly without any disruption to the end user.
+
+## Results & Impact
+
+- **100% Automated Deployments:** Completely eliminated manual `kubectl apply` commands and the associated human error.
+- **Enhanced Security & Auditability:** Because the Git repository is the single source of truth, every cluster change is now tracked, reviewed, and audited via standard Git pull requests.
+- **Faster Disaster Recovery:** In the event of a failure or bad deployment, the cluster state can be instantly and reliably rolled back to a previous known-good Git commit.

@@ -1,0 +1,42 @@
+---
+title: "Secure Kubernetes with Talos Linux"
+publishedAt: "2026-02-09"
+summary: "Deployed a highly secure, immutable Kubernetes cluster using Talos Linux. Optimized for minimal attack surface and automated upgrades."
+images:
+  - "/images/projects/talos.png"
+team:
+  - name: "Majdeldin Salah"
+    role: "Cloud & DevOps Engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/majdeldin"
+---
+
+## Overview
+
+In this project, I engineered a highly secure and minimalist Kubernetes cluster from the ground up by leveraging Talos Linux. The goal was to build a production-ready environment that prioritizes security, eliminates OS-level drift, and dramatically simplifies cluster maintenance and lifecycle management.
+
+## Architecture & Tech Stack
+
+- **Operating System:** Talos Linux (Immutable OS)
+- **Container Orchestration:** Kubernetes
+- **Infrastructure:** Bare Metal / Proxmox & ESXi
+- **Networking/CNI:** Flannel
+- **Automation:** Talosctl & Infrastructure as Code
+
+## The Challenge
+
+Running Kubernetes on general-purpose Linux distributions introduces unnecessary overhead and a significantly larger attack surface. Traditional OS management requires constant patching, SSH access, and configuration management, which can lead to configuration drift and security vulnerabilities across worker nodes over time.
+
+## The Solution
+
+To solve this, I replaced traditional Linux distributions with **Talos Linux**, a modern, API-driven operating system specifically designed to run Kubernetes and nothing else. 
+
+1. **Immutable Infrastructure:** Deployed Talos Linux, running entirely in memory from a squashfs image. This ensures that the underlying OS cannot be modified at runtime, making it highly resistant to tampering.
+2. **API-Driven Management:** Completely eliminated SSH and console access. All node interactions and configurations are securely handled via the Talos API and `talosctl` using mutual TLS (mTLS).
+3. **Automated Provisioning:** Used Infrastructure as Code to generate secure machine configurations and bootstrap the cluster seamlessly.
+
+## Results & Impact
+
+- **Drastically Reduced Attack Surface:** By removing shell access, standard Linux utilities, and unneeded packages, potential attack vectors at the OS level were minimized.
+- **Simplified Operations:** OS-level patching was eliminated. Node upgrades are now handled safely through automated, immutable image replacements with zero downtime.
+- **Enhanced Reliability:** Configuration drift is completely prevented by the read-only file system, ensuring identical and predictable cluster states across all environments.

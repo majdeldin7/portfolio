@@ -1,0 +1,45 @@
+---
+title: "Microservices Observability Platform"
+publishedAt: "2026-02-15"
+summary: "Designed and implemented a comprehensive observability platform supporting 70+ microservices, featuring real-time alerting via Slack and MS Teams to reduce overall system downtime by 40%."
+images:
+  - "/images/projects/monitor.png"
+team:
+  - name: "Majdeldin Salah"
+    role: "Cloud & DevOps Engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/majdeldin"
+---
+
+## Overview
+
+As our architecture scaled to over 70 interconnected microservices, troubleshooting production incidents became increasingly complex. In this project, I architected and deployed a centralized, "single pane of glass" observability platform. By integrating metrics, logs, tracing, and automated alerting, we dramatically improved our Mean Time To Resolution (MTTR) and proactively cut system downtime by 40%.
+
+## Architecture & Tech Stack
+
+- **Container/K8s Metrics:** Prometheus & Grafana
+- **Infrastructure & Uptime:** Zabbix
+- **Centralized Logging:** ELK Stack (Elasticsearch, Logstash, Kibana)
+- **Distributed Tracing:** Elastic APM
+- **Alerting & Incident Response:** Slack, Microsoft Teams, Prometheus Alertmanager
+- **Environment:** Kubernetes / Bare Metal VMs
+
+## The Challenge
+
+Before this initiative, the engineering team suffered from severe visibility blind spots. With 70+ microservices communicating with each other, pinpointing the root cause of an issue was a nightmare. We lacked proactive alerts for critical infrastructure degradation, meaning we often only found out about outages when users complained. This resulted in delayed incident responses and unacceptable downtime.
+
+## The Solution
+
+I engineered a multi-layered monitoring and alerting strategy to cover every aspect of our infrastructure and application lifecycle:
+
+1. **Kubernetes Metrics & Visualization:** Deployed **Prometheus** inside the cluster to scrape real-time metrics from our microservices and cluster nodes. Connected this to **Grafana** to build dynamic, real-time dashboards for the engineering team.
+2. **Infrastructure & Uptime Monitoring:** Implemented **Zabbix** outside the cluster to monitor the health of our underlying bare-metal servers, network interfaces, and databases. 
+3. **Centralized Logging:** Deployed the **ELK Stack** to aggregate application and system logs. I configured Filebeat/Logstash to parse and ship logs into Elasticsearch, giving developers a centralized Kibana interface to query logs across all 70+ services instantly.
+4. **Distributed Tracing:** Integrated **Elastic APM** into our microservices to visually track exactly how a single user request flows through multiple services and identify specific bottlenecks.
+5. **Real-Time Alerting Pipeline:** Configured Prometheus Alertmanager and Zabbix triggers to route critical alerts directly to dedicated **Slack channels** and **Microsoft Teams** webhooks. The engineering team is now instantly notified of anomalies, with alerts containing deep links directly to the relevant Grafana dashboards and Kibana logs for immediate context.
+
+## Results & Impact
+
+- **40% Reduction in Downtime:** By shifting from reactive debugging to proactive alerting in Slack and Teams, we catch and resolve resource leaks and service failures before they impact end-users.
+- **Faster Incident Resolution:** Developers no longer need to SSH into machines. The ELK stack, Elastic APM, and rich webhook alerts reduced the time required to trace an error from hours to mere minutes.
+- **Unified Visibility:** The engineering and operations teams now share a single source of truth for application health, greatly improving cross-team collaboration.
