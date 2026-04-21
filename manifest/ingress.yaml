@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: website
+  namespace: majd
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    external-dns.alpha.kubernetes.io/hostname: "majd-website.fg-tech.net"
+    external-dns.alpha.kubernetes.io/target: "k8s-local02.fg-tech.net"
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    haproxy.org/ssl-redirect: "true"
+    haproxy.org/server-timeout: "1200s"
+    haproxy.org/connect-timeout: "1200s"
+    haproxy.org/rate-limit-requests: "100"
+    haproxy.org/rate-limit-period: "1s"
+    haproxy.org/rate-limit-status-code: "429"
+spec:
+  ingressClassName: haproxy
+  tls:
+    - hosts:
+        - majd-website.fg-tech.net
+      secretName: majd-website-fg-tech-net
+  rules:
+    - host: majd-website.fg-tech.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: majd-website
+                port:
+                  number: 80
