@@ -20,7 +20,7 @@ spec:
       automountServiceAccountToken: false
       terminationGracePeriodSeconds: 7
       containers:
-        - image: registry.fg-tech.net/majd-website:54fdb6b
+        - image: registry.fg-tech.net/majd-website:3450b4e
           imagePullPolicy: IfNotPresent
           name: majd-website
           ports:
