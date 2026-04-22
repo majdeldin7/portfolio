@@ -4,10 +4,10 @@ metadata:
   name: website
   namespace: majd
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    external-dns.alpha.kubernetes.io/hostname: "majd-website.fg-tech.net"
-    external-dns.alpha.kubernetes.io/target: "k8s-local02.fg-tech.net"
-    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-majd"
+    # external-dns.alpha.kubernetes.io/hostname: "majd-website.fg-tech.net"
+    # external-dns.alpha.kubernetes.io/target: "k8s-local02.fg-tech.net"
+    # external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     haproxy.org/ssl-redirect: "true"
     haproxy.org/server-timeout: "1200s"
     haproxy.org/connect-timeout: "1200s"
@@ -18,10 +18,10 @@ spec:
   ingressClassName: haproxy
   tls:
     - hosts:
-        - majd-website.fg-tech.net
-      secretName: majd-website-fg-tech-net
+        - majdeldin.dev
+      secretName: majdeldin-dev
   rules:
-    - host: majd-website.fg-tech.net
+    - host: majdeldin.dev
       http:
         paths:
           - path: /
