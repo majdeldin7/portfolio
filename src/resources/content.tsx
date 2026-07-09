@@ -7,7 +7,7 @@ const person: Person = {
   name: `Majdeldin Salah`,
   role: "Cloud/Infra & DevOps Engineer",
   avatar: "/images/avatar.jpg",
-  email: "majdeldinsalah@gmail.com",
+  email: "me@majdeldin.dev",
   location: "Africa/Khartoum", 
   languages: ["Arabic", "English"], 
 };
@@ -229,7 +229,7 @@ const contact: any = {
   title: `Let's Connect`,
   description: `Always eager to tackle new engineering challenges. If you're looking for a DevOps partner, want to chat about cloud infrastructure, or just want to connect, my inbox is always open!`,
   links: [
-    { type: "Email", value: "majdeldinsalah@gmail.com", link: "mailto:majdeldinsalah@gmail.com" },
+    { type: "Email", value: "me@majdeldin.dev", link: "mailto:me@majdeldin.dev" },
     { type: "GitHub", value: "github.com/majdeldin7", link: "https://github.com/majdeldin7" },
     { type: "LinkedIn", value: "linkedin.com/in/majdeldin", link: "https://www.linkedin.com/in/majdeldin" },
     { type: "WhatsApp", value: "+249 99 000 7091", link: "https://wa.me/249990007091" }
