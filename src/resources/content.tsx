@@ -106,7 +106,7 @@ const about: About = {
     title: "Work Experience",
     experiences: [
       {
-        company: "Istinara MATC", //[cite: 1]
+        company: "Bravo Sudan | Istinara MATC", //[cite: 1]
         timeframe: "Dec 2024 - Present", //[cite: 1]
         role: "Cloud & DevOps Engineer", //[cite: 1]
         achievements: [
