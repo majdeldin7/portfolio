@@ -111,16 +111,38 @@ const about: About = {
         role: "Cloud & DevOps Engineer", //[cite: 1]
         achievements: [
           <>
+            Engineered a GitOps-driven CI/CD ecosystem using Jenkins, ArgoCD, and SonarQube,
+            enabling 100+ weekly production releases with automated security gates that reduced
+            vulnerabilities by 30% and ensured PCI-compliant code quality.
+          </>,
+          <>
+            Architected high-availability hybrid infrastructure (AWS/OVH) for a platform with 1M+ Play
+            Store downloads; maintained 99.99% uptime via global failover and automated disaster
+            recovery for mission-critical services.
+          </>,
+          <>
+            Optimized application scalability and performance by configuring AWS Application Load
+            Balancers (ALB) and Kubernetes horizontal pod autoscaling, ensuring seamless system
+            reliability during high-volume transaction surges.
+          </>,
+          <>
+            Secured critical financial integrations by designing and deploying encrypted Site-to-Site
+            VPN tunnels via NetGate firewalls, facilitating compliant and secure data exchange with
+            banking partners and external billers.
+          </>,
+          <>
+            Developed a full-stack observability framework leveraging Zabbix, Prometheus/Grafana,
+            and the ELK Stack, providing proactive Slack/SMS alerting and Elastic APM tracing to cut
+            system downtime by 40%.
+          </>,
+          <>
+            Centralized Identity and Access Management (IAM) for 200+ accounts by integrating
+            LDAP/AD with corporate platforms.
+          </>,
+          <>
             Built deployment pipeline that let our 6-person team ship 70+ releases/week without ever
             working weekends.
           </>,
-          <>
-            Managed AWS infrastructure supporting 300K+ users with 99.99% uptime and implemented 
-            load balancing and auto-scaling.
-          </>,
-          <>
-            Implemented automated security scanning, reducing vulnerabilities in production by 30%.
-          </>
         ],
         images: [], 
       },
@@ -130,15 +152,35 @@ const about: About = {
         role: "Infra & DevOps Engineer", //[cite: 1]
         achievements: [
           <>
-            Migrated legacy monolith to microservices, improving developer velocity by 300%.
+            Architected and executed the migration of a legacy monolithic architecture to a
+            containerized microservices environment, leveraging [Docker/Kubernetes] to increase
+            developer velocity by 300%.
           </>,
           <>
-            Helped set up monitoring system that supported 70+ microservices, cutting downtime by
-            40%.
+            Engineered a comprehensive observability stack to monitor 50+ microservices, utilizing
+            [Prometheus/Grafana/Loki] to reduce system downtime by 40% through proactive
+            alerting.
           </>,
           <>
-            Assisted in optimizing CI/CD pipelines, contributing to a 15% faster build process.
-          </>
+            Optimized CI/CD pipelines by streamlining build stages and implementing advanced
+            caching, resulting in a 15% reduction in deployment lead times.
+          </>,
+          <>
+            Provisioned and managed enterprise-grade self-hosted infrastructure, including internal
+            mail and file-sharing platforms, ensuring 99.9% availability for 70+ stakeholders.
+          </>,
+          <>
+            Integrated automated vulnerability scanning and security auditing into the infrastructure
+            lifecycle, significantly reducing the attack surface and ensuring compliance.
+          </>,
+          <>
+            Deployed and maintained secure remote access solutions (VPN/Zero Trust), providing
+            high-performance, encrypted connectivity for a globally distributed team.
+          </>,
+          <>
+            Developed automation scripts for critical backup and disaster recovery (DR) workflows,
+            eliminating 100+ hours of manual overhead annually and improving data integrity.
+          </>,
         ],
         images: [],
       },
@@ -148,17 +190,25 @@ const about: About = {
         role: "IT Support Engineer",
         achievements: [
           <>
-            Deployed and supported internal email and file-sharing platforms, providing direct 
-            configuration and troubleshooting for 70+ user accounts.
+            Managed and maintained enterprise email and collaboration platforms for internal
+            accounts, ensuring 99.9% service availability through proactive configuration and end-user
+            technical support.
           </>,
           <>
-            Configured and supported privacy-focused remote access solutions, ensuring secure and 
-            reliable connectivity for distributed and remote teams.
+            Administered virtualized server environments using Proxmox VE, overseeing VM
+            deployment, resource allocation, and hardware monitoring to ensure stable hosting for
+            internal applications.
           </>,
           <>
-            Managed proactive system monitoring tools, quickly identifying and resolving network 
-            and infrastructure issues to minimize daily operational downtime for staff.
-          </>
+            Provisioned Identity and Access Management (IAM) via LDAP/Active Directory,
+            streamlining user onboarding/offboarding and managing secure permissions across
+            corporate systems.
+          </>,
+          <>
+            Configured secure networking and remote access solutions using NetGate firewalls and
+            VPN tunnels, while automating weekly backup tasks to guarantee organizational data
+            integrity.
+          </>,
         ],
         images: [],
       },
