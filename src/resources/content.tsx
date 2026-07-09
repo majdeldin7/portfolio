@@ -139,10 +139,6 @@ const about: About = {
             Centralized Identity and Access Management (IAM) for 200+ accounts by integrating
             LDAP/AD with corporate platforms.
           </>,
-          <>
-            Built deployment pipeline that let our 6-person team ship 70+ releases/week without ever
-            working weekends.
-          </>,
         ],
         images: [], 
       },
